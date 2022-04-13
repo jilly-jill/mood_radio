@@ -22,13 +22,19 @@ headers = authorization.headers
 artist = input('\nArtist Name:\n>').lower()
 
 # base URL for API endpoints
-API = 'https://api.spotify.com/v1/search?q={artist}'
-param = '&type=artist'
+API_SEARCH = f'https://api.spotify.com/v1/search?q={artist}&type=artist'
+API_AUDIO = 'https://api.spotify.com/v1/audio-analysis/id?q='
+API_ARTIST = 'https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg'
+
 
 # GET request with proper authorization header
-r = requests.get(API + param, headers=headers)
-r = r.json()
-pprint(r)
+def search_get_formatted(api_url):
+    r = requests.get(api_url, headers=headers)
+    r = r.json()
+    return pprint(r)
 
 
+get_request_formatted(API_SEARCH)
+
+# artists -> dictionary / items -> listitems.get('id')
 
